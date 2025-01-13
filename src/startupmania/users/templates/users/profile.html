@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title%}<title>User Profile</title> {%endblock%}
+
+{% block content %}
+<form method = "POST">
+
+    {% csrf_token %}
+
+    <h3>User Information</h3>
+    {{u_form|crispy}}
+
+    <h3>Profile information</h3>
+    {{p_form|crispy}}
+
+    <button type = "submit"> Update Profile</button>
+
+</form>
+
+{% endblock %}

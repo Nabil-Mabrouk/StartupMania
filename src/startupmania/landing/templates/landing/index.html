@@ -1,0 +1,14 @@
+{%extends 'landing/base.html'%}
+{% load static%}
+
+{% block title %} <title>Home</title> {% endblock %}
+
+{% block content%} 
+<h1>Enter your email:</h1>
+<form method="post" action="{%url 'landing_page' %}">
+    {% csrf_token %}
+    <input type="email" name="email" id="id_email" maxlength="80" placeholder="Enter you email here">
+    <button type="submit" id="email-submit">Enter</button>
+</form>
+
+{%endblock%}

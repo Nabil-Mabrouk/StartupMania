@@ -1,0 +1,15 @@
+{%extends 'users/base.html'%}
+{%load static%}
+{%load allauth%}
+
+{%block title%} <title> Signup page </title> {% endblock %}
+
+{% block content %}
+<h1> Singup page</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Register</button>
+</form>
+<a href="{% url 'custom_login' %}">Already have an account? Login</a>
+{%endblock%}

@@ -1,0 +1,23 @@
+{%load static%}
+
+<html lang="en">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    {%block title%} {% endblock %}
+
+    <!-- link to css style goes here -->
+
+    <body>
+        {%for message in messages%}
+        <ul>
+            <li> {{message}}</li>
+        </ul>
+        {% endfor %}
+
+        {%block content%} {% endblock %}
+
+    <!-- js script goes here -->
+    </body>
+    
+</html>
