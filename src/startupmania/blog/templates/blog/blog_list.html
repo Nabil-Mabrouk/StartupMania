@@ -1,4 +1,9 @@
+{%extends 'landing/base.html'%}
+{% load static%}
 
+{% block title %} <title>Blog list</title> {% endblock %}
+
+{% block content%}
 
 {% for post in posts %}
   <div>
@@ -6,3 +11,5 @@
     <p>Published: {{ post.published_date }}</p>
   </div>
 {% endfor %}
+
+{%endblock%}

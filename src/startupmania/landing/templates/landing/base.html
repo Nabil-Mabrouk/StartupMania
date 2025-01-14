@@ -1,13 +1,16 @@
 {%load static%}
-
+<!DOCTYPE html>
 <html lang="en">
+    <head>
+
+    
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     {%block title%} {% endblock %}
-
+    <link href="{% static 'landing/css/style.css' %}" rel="stylesheet">
     <!-- link to css style goes here -->
-
+    </head>
     <body>
         {% include 'landing/_snipets/_navbar.html'%}
         {%for message in messages%}

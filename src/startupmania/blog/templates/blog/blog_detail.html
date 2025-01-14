@@ -1,4 +1,13 @@
-<h1>{{ post.title }}</h1>
-<div>
+{%extends 'landing/base.html'%}
+{% load static%}
+
+{% block title %} <title>Post</title> {% endblock %}
+
+{% block content%}
+
+<h1 class="text-skins-dark">{{ post.title }}</h1>
+<div class="text-skins-dark">
   {{ content_html|safe }}
 </div>
+
+{%endblock%}
