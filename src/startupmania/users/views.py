@@ -51,10 +51,8 @@ class CustomPasswordResetView(PasswordResetView):
         messages.success(self.request, 'Password reset link sent! Check your email.')
         return super().form_valid(form)
 
-
 class CustomPasswordResetDoneView(PasswordResetDoneView):
     template_name = 'account/password_reset_done.html'  # Custom template path
-
 
 class CustomPasswordResetConfirmView(PasswordResetDoneView):
     template_name = 'account/password_reset_confirm.html'  # Custom template path
@@ -64,10 +62,8 @@ class CustomPasswordResetConfirmView(PasswordResetDoneView):
         messages.success(self.request, 'Your password has been reset successfully!')
         return super().form_valid(form)
 
-
 class CustomPasswordResetCompleteView(PasswordResetDoneView):
     template_name = 'account/password_reset_complete.html'  # Custom template path
-
 
 class CustomPasswordResetFromKeyView(PasswordResetFromKeyView):
     template_name = "account/password_reset_from_key.html"  # Use your custom template
@@ -85,11 +81,10 @@ class CustomPasswordResetFromKeyDoneView(PasswordResetFromKeyDoneView):
         print(f"Using template: {self.template_name}")
         return super().get_template_names()
     
-
-
 @login_required
 def Profile(request):
     if request.method=='POST':
+        
         u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
 
@@ -97,16 +92,17 @@ def Profile(request):
             u_form.save()
             p_form.save()
             messages.success(request, f'Your account has been Updated.')
-            return redirect('landing-view')
-        else:
-            u_form= UserUpdateForm(instance=request.user)
-            p_form = ProfileUpdateForm(instance=request.user.profile)
+            return redirect('landing-page')
+    else:
+        print("post else")
+        u_form= UserUpdateForm(instance=request.user)
+        p_form = ProfileUpdateForm(instance=request.user.profile)
         
-        context = {
+    context = {
             'u_form':u_form,
             'p_form':p_form
         }
-        return render(request, 'users/profile.html', context)
+    return render(request, 'users/profile.html', context)
 
 @login_required
 def edit_profile(request):

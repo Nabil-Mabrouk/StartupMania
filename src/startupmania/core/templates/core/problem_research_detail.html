@@ -1,0 +1,22 @@
+{% extends 'landing/base.html' %}
+{% load static %}
+{% load markdownify %}
+
+{% block content %}
+<section id="detail" class="py-20 bg-gray-950 text-white">
+  <div class="container mx-auto px-4 gap-4">
+    <h2 class="text-4xl font-bold mb-6">{{ problem_research.project_name }}</h2>
+    <p><strong>Category:</strong> {{ problem_research.category }}</p>
+    <p><strong>Market Size:</strong> {{ problem_research.market_size }}</p>
+    <div class="prose-invert bg-gray-900 p-4 rounded-md border border-gray-600 mt-2 text-2xl">
+        <p><strong> <span class="text-2xl">Report:</span></strong> {{ problem_research.report|markdownify }}</p>
+    </div>
+    
+    <p><strong>Created At:</strong> {{ problem_research.created_at }}</p>
+    <div class="mt-6">
+      <a href="{{ problem_research.id }}/edit/" class="bg-primary text-white py-2 px-4 rounded">Edit</a>
+      <a href="{{ problem_research.id }}/delete/" class="bg-red-600 text-white py-2 px-4 rounded">Delete</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

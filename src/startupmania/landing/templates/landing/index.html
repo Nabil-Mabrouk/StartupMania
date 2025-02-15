@@ -1,15 +1,80 @@
-{%extends 'landing/base.html'%}
-{% load static%}
+{% extends 'landing/base.html' %}
+{% load static %}
+{% load form_helpers %}
 
-{% block title %} <title>Home</title> {% endblock %}
+{% block title %}<title>Startup Mania - Launch Your Startup</title>{% endblock %}
 
-{% block content%} 
-<div class="bg-blue-400 text-color-darker hover:bg-green-200 ">
-<h1 class="text-color">Enter your email:</h1>
-<form method="post" action="{%url 'landing_page' %}">
-    {% csrf_token %}
-    <input type="email" name="email" id="id_email" maxlength="80" placeholder="Enter you email here">
-    <button type="submit" id="email-submit" class="button">Enter</button>
-</form>
-</div>
-{%endblock%}
+{% block content %}
+
+<!-- Hero Section -->
+<section id="hero" class="text-white min-h-screen flex items-center">
+
+
+
+
+  <div class="container mx-auto px-4">
+    <div class="max-w-4xl mx-auto text-center mb-16">
+      <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+        Launch Your Startup in Minutes
+      </h1>
+      <p class="text-xl md:text-3xl text-blue-200/80 mb-8">
+        Focus on your vision while we handle the rest.
+      </p>
+    </div>
+
+    <!-- Form Container -->
+    <div class="max-w-2xl mx-auto bg-gradient-to-br from-gray-800 to-blue-900/20 rounded-xl shadow-2xl p-6 md:p-8 border border-blue-800/30 hover:border-blue-700/50 transition-all">
+      <h2 class="text-3xl font-bold mb-6 text-center bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+        Submit Your Problem
+      </h2>
+      <form method="post" class="space-y-6">
+        {% csrf_token %}
+        <div>
+          <label for="user_problem" class="block text-lg font-medium mb-3 text-blue-200">
+            Describe Your Idea or Problem
+          </label>
+          {{ form.idea_text|add_class:"w-full px-4 py-3 rounded-lg bg-blue-900/20 border border-blue-800/30 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/30 text-gray-100 placeholder-blue-400/50 transition" }}
+        </div>
+        <button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-400 hover:to-purple-500 text-white font-semibold py-3 px-6 rounded-lg transform transition-all duration-300 hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-blue-500/20 shadow-lg shadow-blue-500/10">
+          Submit Idea
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Latest Projects Section -->
+<!--section id="projects" class="py-16 md:py-24 bg-gradient-to-b from-blue-950/30 to-gray-900">
+  <div class="container mx-auto px-4">
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold mb-2 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+        Recent Success Stories
+      </h2>
+      <p class="text-blue-300/80 text-lg">
+        Explore projects launched through Startup Mania
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {% for project in projects %}
+      <div class="group bg-blue-900/10 p-6 rounded-xl border border-blue-800/20 hover:border-blue-400/40 transition-all duration-300 hover:bg-blue-900/20">
+        <div class="mb-4">
+          <h3 class="text-xl font-semibold mb-2 text-blue-200">
+            {{ project.project_name }}
+          </h3>
+          <p class="text-blue-300/70 text-sm leading-relaxed">
+            "{{ project.user_problem|truncatechars:120 }}"
+          </p>
+        </div>
+        <a href="{% url 'results' pk=project.pk %}" class="inline-flex items-center text-blue-400 hover:text-purple-300 font-medium transition-colors">
+          View Details
+          <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section-->
+{% endblock %}

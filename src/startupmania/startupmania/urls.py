@@ -21,12 +21,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 from users.views import CustomPasswordChangeView, CustomPasswordResetView, CustomPasswordResetDoneView, CustomPasswordResetConfirmView, CustomPasswordResetCompleteView
 from users.views import CustomPasswordResetFromKeyView
-from users.views import CustomPasswordResetFromKeyDoneView
+from users.views import CustomPasswordResetFromKeyDoneView, Profile, edit_profile
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('landing.urls')),
     path('core/', include('core.urls')),
+    path('profile/', Profile, name='profile'),
+    path('edit_profile/', edit_profile, name='edit_profile'),
     path('accounts/logout/', CustomLogoutView.as_view(), name='custom_logout'),
     path('accounts/login/', CustomLoginView.as_view(), name='custom_login'),
     path('accounts/signup/', CustomSignupView.as_view(), name='custom_signup'),
@@ -40,6 +42,7 @@ urlpatterns = [
     path('accounts/password/reset/key/done/', CustomPasswordResetFromKeyDoneView.as_view(), name='account_reset_password_from_key_done'),
     path('accounts/', include('allauth.urls')),
     path('blog/', include('blog.urls')),
+    path('onboarding/', include('onboarding.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

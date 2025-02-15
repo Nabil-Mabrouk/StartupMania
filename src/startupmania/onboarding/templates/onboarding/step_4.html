@@ -1,0 +1,10 @@
+{% extends 'landing/base.html' %}
+
+{% block content %}
+<h1>Step 4: Confirmation</h1>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" name="action" value="previous">Previous</button>
+    <button type="submit" name="action" value="complete">Complete</button>
+</form>
+{% endblock %}

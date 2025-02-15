@@ -1,0 +1,78 @@
+problem_structuring_task:
+  description: >
+    Take the user-provided demand and structure it into a clear start-up idea by:
+    - Defining the problem in detail.
+    - Proposing a feasible solution that can be implemented as a web application.
+    The solution should include:
+    - Key functionalities of the proposed web application.
+    - The value it provides to users.
+    user-provided demand : {user_problem}
+  expected_output: >
+    A structured start-up idea with:
+    - A clear problem statement.
+    - A proposed solution with key functionalities outlined.
+    - The solution scoped to be feasible as a web application.
+
+market_analysis_task:
+  description: >
+    Research the market context for the problem. Identify the target audience, potential demand, 
+    and estimated market size. Highlight relevant trends and opportunities.
+  expected_output: >
+    A brief market overview including:
+    - Target audience
+    - Market demand
+    - Estimated market size
+    - Key trends and opportunities.
+
+competitor_analysis_task:
+  description: >
+    Analyze existing competitors and their solutions. Identify strengths, weaknesses, 
+    and any gaps that could be leveraged.
+  expected_output: >
+    A competitor analysis including:
+    - List of key competitors
+    - Their strengths and weaknesses
+    - Competitive gaps and opportunities.
+
+
+technical_feasibility_task:
+  description: >
+    Assess the technical feasibility of the proposed solution. Identify potential challenges, 
+    limitations, and high-level technical requirements needed for implementation.
+  expected_output: >
+    A feasibility report including:
+    - High-level technical requirements
+    - Potential challenges and limitations
+    - Feasibility of implementing the solution.
+
+
+final_analysis_task:
+  description: >
+    Synthesize findings from all tasks into a comprehensive report nicely formatted in markdown. 
+    The report should include:
+    - Problem statement
+    - Proposed solution outline
+    - Market overview
+    - Competitor analysis
+    - Technical feasibility
+    Additionally, provide a structured output in the following format:
+    - project_name: One-word project name (max 8 characters)
+    - market_size: Estimated market size
+    - category: Project category
+  expected_output: >
+    A comprehensive final report well formatted in markdown including:
+      - project_name: One-word project name (max 8 characters)
+      - Problem statement
+      - Proposed solution outline
+      - Market overview
+      - Competitor analysis
+      - Technical feasibility
+      - Summary of key insights and recommendations.
+    Structured output:
+    - comprehensive final report in well formatted markdown
+    - project_name: One-word project name (max 8 characters)
+    - market_size: Estimated market size
+    - category: Project category
+
+  
+ 

@@ -1,0 +1,83 @@
+{% extends "landing/base.html" %}
+{% load static %}
+{% load form_helpers %}
+
+{% block content %}
+<section class="text-white min-h-screen flex items-center">
+  <div class="container mx-auto px-4">
+    <!-- Progress Header -->
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <h1 class="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+        Step {{ step }} of {{ total_steps }} - {{ step_title }}
+      </h1>
+      <p class="text-lg text-blue-200/80">{{ step_description }}</p>
+    </div>
+
+    <!-- Form Container -->
+    <div class="max-w-4xl mx-auto bg-gradient-to-br from-gray-800 to-blue-900/20 rounded-xl shadow-2xl p-6 md:p-8 border border-blue-800/30 hover:border-blue-700/50 transition-all">
+      
+      <form method="post" class="space-y-8">
+        {% csrf_token %}
+
+        <!-- Selected Apps -->
+        <div>
+          <label for="{{ form.selected_apps.id_for_label }}" class="block text-lg font-medium mb-3 text-blue-200">
+            Select Applications for Your MVP
+          </label>
+          {{ form.selected_apps|add_class:"w-full px-4 py-3 rounded-lg bg-blue-900/20 border border-blue-800/30 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/30 text-gray-100 placeholder-blue-400/50 transition" }}
+        </div>
+
+        <!-- Custom Features -->
+        <div>
+          <label for="{{ form.custom_features.id_for_label }}" class="block text-lg font-medium mb-3 text-blue-200">
+            Custom Features
+          </label>
+          {{ form.custom_features|add_class:"w-full px-4 py-3 rounded-lg bg-blue-900/20 border border-blue-800/30 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/30 text-gray-100 placeholder-blue-400/50 transition resize-none h-48" }}
+        </div>
+
+        <!-- Frontend Description -->
+        <div>
+          <label for="{{ form.frontend_description.id_for_label }}" class="block text-lg font-medium mb-3 text-blue-200">
+            Frontend Description & Customization
+          </label>
+          {{ form.frontend_description|add_class:"w-full px-4 py-3 rounded-lg bg-blue-900/20 border border-blue-800/30 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/30 text-gray-100 placeholder-blue-400/50 transition resize-none h-48" }}
+        </div>
+
+        <!-- Navigation Buttons -->
+        <!-- Navigation Buttons -->
+        <div class="flex gap-4 justify-between pt-8 border-t border-blue-800/30">
+          <div class="flex gap-4">
+            {% if total_steps > step %}
+            <button type="submit" name="action" value="process" 
+                    class="bg-gradient-to-r from-indigo-500 to-blue-600 hover:from-indigo-400 hover:to-blue-500 text-white font-semibold py-3 px-8 rounded-lg transform transition-all duration-300 hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-blue-500/20 shadow-lg shadow-blue-500/10">
+              Process MVP {{ step }}
+            </button>
+            {% endif %}
+          </div>
+          
+          <div class="flex gap-4">
+            {% if step > 1 %}
+            <button type="submit" name="action" value="previous" 
+                    class="bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-500 hover:to-gray-600 text-white font-semibold py-3 px-8 rounded-lg transform transition-all duration-300 hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-gray-500/20 shadow-lg shadow-blue-500/10">
+              ← Back
+            </button>
+            {% endif %}
+            
+            {% if step == total_steps %}
+            <button type="submit" name="action" value="submit" 
+                    class="bg-gradient-to-r from-green-500 to-cyan-600 hover:from-green-400 hover:to-cyan-500 text-white font-semibold py-3 px-8 rounded-lg transform transition-all duration-300 hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-green-500/20 shadow-lg shadow-blue-500/10">
+              Submit Final Review
+            </button>
+            {% else %}
+            <button type="submit" name="action" value="next" 
+                    class="bg-gradient-to-r from-green-500 to-cyan-600 hover:from-green-400 hover:to-cyan-500 text-white font-semibold py-3 px-8 rounded-lg transform transition-all duration-300 hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-green-500/20 shadow-lg shadow-blue-500/10">
+              Next Step →
+            </button>
+            {% endif %}
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

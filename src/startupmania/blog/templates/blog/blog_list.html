@@ -6,8 +6,8 @@
 {% block content%}
 
 {% for post in posts %}
-  <div>
-    <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+  <div class="bg-background text-text font-body">
+    <h2 class="font-heading"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
     <p>Published: {{ post.published_date }}</p>
   </div>
 {% endfor %}

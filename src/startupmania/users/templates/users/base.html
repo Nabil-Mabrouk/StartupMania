@@ -2,25 +2,24 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-
-    
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
     {%block title%} {% endblock %}
     <link href="{% static 'landing/css/output.css' %}" rel="stylesheet">
     <!-- link to css style goes here -->
     </head>
-    <body>
+
+    <body class="bg-gray-900 text-white min-h-screen flex items-center justify-center">
         {%for message in messages%}
         <ul>
             <li> {{message}}</li>
         </ul>
         {% endfor %}
-
-        {%block content%} {% endblock %}
-
-    <!-- js script goes here -->
+        <div class="max-w-4xl w-full px-6 py-8 bg-gray-800 rounded-lg shadow-lg">
+            {% block content %}
+            {% endblock %}
+        </div>
     </body>
     
 </html>
+

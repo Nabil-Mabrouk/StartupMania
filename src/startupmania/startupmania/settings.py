@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
-import environ, os
+import environ, os, sys
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -33,6 +33,9 @@ DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = []
 
+# folder for the reusable apps library
+GENERATED_PROJECTS_ROOT = os.path.join(BASE_DIR, 'generated_projects')
+APP_TEMPLATES_ROOT = os.path.join(BASE_DIR, 'app_templates')
 
 # Application definition
 
@@ -48,6 +51,9 @@ INSTALLED_APPS = [
     'blog',
     'dashboard',
     'core',
+    'onboarding',
+    'reusable',
+    'markdownify',
     'allauth',
     'allauth.account',
 ]
@@ -173,10 +179,29 @@ EMAIL_HOST_USER = env('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD') 
 DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
 
-LOGIN_REDIRECT_URL = 'landing_page'
-ACCOUNT_LOGOUT_REDIRECT = 'landing_page'
+OPENAI_API_KEY=env('OPEN_AI_KEY')
+
+LOGIN_REDIRECT_URL = 'landing-page'
+ACCOUNT_LOGOUT_REDIRECT = 'landing-page'
 
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
+
+MARKDOWNIFY = {
+    "default": {
+        "WHITELIST_TAGS": [
+            "p", "a", "b", "i", "strong", "em", "ul", "ol", "li", "h1", "h2", "h3", "h4", "h5", "h6", "pre", "code", "blockquote"
+        ],
+        "WHITELIST_ATTRS": ["href", "src", "alt", "title"],
+        "WHITELIST_PROTOCOLS": ["http", "https"],
+        "MARKDOWN_EXTENSIONS": [
+            "markdown.extensions.fenced_code",
+            "markdown.extensions.tables",
+        ],
+    }
+}
+
+# settings.py
+APP_TEMPLATES_ROOT = os.path.join(BASE_DIR, 'startupmania', 'app_templates')

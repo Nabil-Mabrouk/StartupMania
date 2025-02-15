@@ -1,0 +1,7 @@
+name: user_auth
+dependencies:
+  - django-allauth==0.54.0
+settings:
+  AUTH_USER_MODEL: "user_auth.CustomUser"
+urls:
+  - path: "accounts/", include("user_auth.urls")

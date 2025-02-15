@@ -1,0 +1,43 @@
+design_project_task:
+  description: >
+    Using the provided MVP description, define the Django project structure.
+    Include the following:
+    - List of apps with their respective files and instructions.
+    - Python package requirements.
+    - Content for the .env file.
+  expected_output: >
+    A JSON structure containing:
+    {
+      "name": "Project Name",
+      "description": "Short description of the project",
+      "requirements": ["list of requirements"],
+      "env": { "key": "value" },
+      "apps": [
+        {
+          "name": "app_name",
+          "files": [
+            { "name": "file_name.py", "instructions": "instructions here" }
+          ]
+        }
+      ]
+    }
+
+review_design_task:
+  description: >
+    Review the project design provided by the Architect agent. Ensure:
+    - The design aligns with the MVP description.
+    - All required fields are present and valid.
+    - The .env file is secure and does not expose sensitive information unnecessarily.
+  expected_output: >
+    Either:
+    - "Approved" if the design is valid.
+    - A list of issues and recommendations for improvement if the design is invalid.
+
+generate_script_task:
+  description: >
+    Create a shell script to:
+    - Create the Django project.
+    - Install the defined requirements.
+    - Create the .env file with the provided content.
+  expected_output: >
+    A bash script that automates the creation of the Django project based on the approved design.

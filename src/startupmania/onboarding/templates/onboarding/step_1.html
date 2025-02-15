@@ -1,0 +1,9 @@
+{% extends 'landing/base.html' %}
+
+{% block content %}
+<h1>Step 1: Welcome</h1>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" name="action" value="next">Next</button>
+</form>
+{% endblock %}

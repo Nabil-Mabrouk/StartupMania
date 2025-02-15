@@ -1,0 +1,21 @@
+{% extends 'landing/base.html' %}
+{% load static %}
+{% block title %}Confirm Deletion{% endblock %}
+
+{% block content %}
+<section id="delete" class="py-20 bg-gray-950 text-white">
+  <div class="container mx-auto px-6 w-full max-w-2xl bg-gray-800 rounded-lg shadow-xl py-8 border border-gray-700 text-center">
+    <h2 class="text-4xl font-bold mb-6 text-center text-red-600">Confirm Deletion</h2>
+    <p class="mb-4">Are you sure you want to delete the project <strong>{{ problem_research.project_name }}</strong>?</p>
+    <form method="post" class="space-y-6">
+      {% csrf_token %}
+      <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-lg">
+        Yes, Delete
+      </button>
+      <a href="{% url 'problem_research_list' %}" class="w-full bg-gray-700 hover:bg-gray-800 text-white font-semibold py-3 px-6 rounded-lg inline-block text-center">
+        Cancel
+      </a>
+    </form>
+  </div>
+</section>
+{% endblock %}

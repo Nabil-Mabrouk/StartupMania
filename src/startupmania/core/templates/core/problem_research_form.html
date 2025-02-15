@@ -1,0 +1,18 @@
+{% extends 'landing/base.html' %}
+{% load static %}
+{% block title %}Edit Problem Research{% endblock %}
+
+{% block content %}
+<section id="edit" class="py-20 bg-gray-950 text-white">
+  <div class="container mx-auto px-6 w-full max-w-2xl bg-gray-800 rounded-lg shadow-xl py-8 border border-gray-700">
+    <h2 class="text-4xl font-bold mb-6 text-center text-primary-light">Edit Project</h2>
+    <form method="post" class="space-y-6">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="w-full bg-primary hover:bg-primary-light text-white font-semibold py-3 px-6 rounded-lg">
+        Save Changes
+      </button>
+    </form>
+  </div>
+</section>
+{% endblock %}

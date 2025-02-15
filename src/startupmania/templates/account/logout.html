@@ -1,13 +1,36 @@
-{% extends "users/base.html" %}
+{% extends "landing/base.html" %}
 {% load static %}
-{% block title %}Logout{% endblock %}
+{% block title %}Logout - Startup Mania{% endblock %}
 
 {% block content %}
-    <h1>Sign out</h1>
-    <form method="post" action="{% url 'account_logout' %}">
-        {% csrf_token %}
-            <button type="submit">Sign out</button>
-            <a href="{% url 'custom_login' %}" >Login again</a>
-    </form>
+<div class="min-h-screen flex items-center justify-center px-4 py-12">
+    <div class="w-full max-w-md bg-gradient-to-br from-gray-800 to-blue-900/20 rounded-2xl shadow-2xl p-8 border border-blue-800/30">
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                Sign Out
+            </h1>
+            <p class="mt-2 text-blue-200/80">Are you sure you want to sign out?</p>
+        </div>
 
-{%endblock%}
+        <form method="post" action="{% url 'account_logout' %}" class="space-y-6">
+            {% csrf_token %}
+            <button type="submit" 
+                    class="w-full bg-gradient-to-r from-red-500 to-orange-600 hover:from-red-400 hover:to-orange-500 text-white font-semibold py-3 px-6 rounded-lg transform transition-all duration-300 hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-red-500/20 shadow-lg shadow-red-500/10">
+                Sign Out
+            </button>
+        </form>
+
+        <div class="mt-8 text-center">
+            <a href="{% url 'custom_login' %}" 
+               class="inline-flex items-center text-blue-400 hover:text-purple-300 group font-medium transition-colors">
+                <span class="bg-gradient-to-r from-blue-400 to-purple-400 bg-[length:0%_2px] bg-left-bottom bg-no-repeat transition-[background-size] duration-300 group-hover:bg-[length:100%_2px]">
+                    Return to Login
+                </span>
+                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

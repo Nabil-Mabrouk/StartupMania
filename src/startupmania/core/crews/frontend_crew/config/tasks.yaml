@@ -1,0 +1,59 @@
+brand_task:
+  description: >
+    Take the user-provided demand and structure it into a clear start-up idea by:
+    Process user-provided startup info to create brand guidelines including:
+     - Color palette
+     - Typography
+     - Logo usage
+     - Tone of voice
+     - Imagery style
+  expected_output: >
+    Brand guidelines document (Markdown) with specific CSS-ready values
+
+content_task:
+  description: >
+    Create content strategy based on:\n- Startup description\n- MVP features\n- Brand guidelines
+  expected_output: >
+    Structured content plan with:
+    - Page hierarchy
+    - SEO keywords
+    - CTA placements
+    - Content templates
+
+tailwind_task:
+  description: >
+    Configure Tailwind CSS based on:\n- Brand guidelines\n- Content strategy requirements
+  expected_output: >
+    tailwind.config.js file with:
+     - Custom color palette
+     - Font settings
+     - Plugin configurations
+     - Optimization settings
+
+coding_task:
+  description: >
+    Develop HTML files implementing:\n- Content strategy\n- Brand guidelines\n- Tailwind configuration
+  expected_output: >
+    Complete HTML files with:
+    - Responsive layout
+    - Accessibility features
+    - SEO optimization
+
+testing_task:
+  description: >
+    Perform comprehensive testing including:
+      - Cross-browser testing
+      - Mobile responsiveness
+      - Accessibility audits
+      - Performance checks
+  expected_output: >
+    Test report with:
+      - Bug list
+      - Performance metrics
+      - Compliance issues
+
+qc_task:
+  description: >
+    Analyze test results and provide repair instructions
+  expected_output: >
+    Prioritized list of required fixes with technical specifications

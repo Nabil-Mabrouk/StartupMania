@@ -1,0 +1,75 @@
+{% extends 'landing/base.html' %}
+{% load static %}
+
+{% block content %}
+<section id="projects" class="py-20  text-gray-100">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+        Research Projects
+      </h2>
+      <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+        Exploring innovative solutions to complex market problems
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {% for problem in problem_research_list %}
+      <div 
+        class="group relative bg-gray-800 p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-700 hover:border-primary/30 overflow-hidden"
+      >
+        <div class="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        
+        <div class="relative space-y-4">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
+              <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+              </svg>
+            </span>
+            <h3 class="text-xl font-bold text-gray-100 group-hover:text-primary transition-colors">
+              {{ problem.project_name }}
+            </h3>
+          </div>
+
+          <div class="space-y-2 text-gray-400">
+            <div class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
+              </svg>
+              <span class="font-medium">Category:</span>
+              <span class="bg-secondary/10 px-2 py-1 rounded-md text-sm">{{ problem.category }}</span>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+              </svg>
+              <span class="font-medium">Market Size:</span>
+              <span class="bg-green-400/10 px-2 py-1 rounded-md text-sm text-green-400">${{ problem.market_size }}B</span>
+            </div>
+          </div>
+
+          <a 
+            href="{{ problem.get_absolute_url }}" 
+            class="mt-6 inline-flex items-center gap-2 text-primary hover:text-secondary transition-colors group/details"
+          >
+            <span>Explore Project</span>
+            <svg class="w-4 h-4 transition-transform group-hover/details:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      {% empty %}
+      <div class="col-span-full py-12 text-center">
+        <div class="max-w-md mx-auto bg-gray-800/50 p-8 rounded-2xl border border-dashed border-gray-700">
+          <p class="text-xl text-gray-400">🚀 Coming Soon</p>
+          <p class="mt-2 text-gray-500">New projects currently in development</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}
