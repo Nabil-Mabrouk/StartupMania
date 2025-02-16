@@ -1,0 +1,15 @@
+business_idea_structuring_task:
+  description: >
+    Transform the user-provided business idea into a structured concept ready for Django web application development. 
+    - Define the problem statement concisely.
+    - Propose a structured solution, ensuring feasibility as a Django web application.
+    - Outline core functionalities and user value.
+    - Provide a project name that encapsulates the essence of the idea.
+    
+    User-provided idea: {user_problem}
+  expected_output: >
+    A structured business idea including:
+    - A well-defined problem statement.
+    - A feasible solution structured for Django implementation.
+    - A list of key features and functionalities of the web application.
+    - A compelling project name that reflects the concept.

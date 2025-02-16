@@ -7,6 +7,7 @@ from django.db import transaction
 from .forms import LandingPageIdeaForm
 from .models import LandingPageIdea
 from core.models import Project, BusinessConcept
+from core.crews.step1_crew.step1_crew import CrewAIService
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -15,6 +16,10 @@ class LandingFormView(FormView):
     template_name = 'landing/index.html'
     form_class = LandingPageIdeaForm
     success_url = reverse_lazy('project-step', kwargs={'step': 1})
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.crew_ai_service = CrewAIService()  # Initialize CrewAI service
 
     def form_valid(self, form):
         """Handles form submission and project creation."""
@@ -46,10 +51,14 @@ class LandingFormView(FormView):
         )
 
         # TODO: Replace placeholders with actual generated content
+
+        # Parse the result into a Pydantic model
+        structured_idea = self.crew_ai_service.process_business_idea(idea.idea_text)['reformulated_idea ']
+
         BusinessConcept.objects.create(
             project=project,
             user_demand=idea.idea_text,
-            reformulated_idea=f"Refined version of: {idea.idea_text}"
+            reformulated_idea=structured_idea
         )
 
         idea.processed = True
