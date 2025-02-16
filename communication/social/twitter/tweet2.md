@@ -1,0 +1,2 @@
+Tweet 1: "Two books by @noahkagan and @PeterDiamandis just lit a fire under me. Big ideas, bigger action. Now I'm taking on a wild challenge: launch 100 startups in ONE weekend."
+Tweet 2: "Sounds insane, right? But here’s the thing: I’ll share every step of the process—the tools, insights, wins, and failures. Want to follow along or join the fun? Drop your email here: [www.ai-qube.com]."

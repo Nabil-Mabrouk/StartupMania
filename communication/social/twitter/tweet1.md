@@ -1,0 +1,1 @@
+Just finished two inspiring books by @noahkagan & @PeterDiamandis. Feeling fired up! Here's my crazy new challenge: launch 100 startups in a weekend. Want to see how I do it (or join)? Drop your email here: [www.ai-qube.com]

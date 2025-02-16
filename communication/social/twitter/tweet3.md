@@ -1,0 +1,1 @@
+@noahkagan taught me about the process of creating a start-up. @PeterDiamandis inspired me to think 10x bigger with new AI technologies. So here’s my wild new idea: launch 100 startups in a weekend. Insane, right? I’ll share how it goes. Follow me and sign up here: [www.ai-qube.com].
