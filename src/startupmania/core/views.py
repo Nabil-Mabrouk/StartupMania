@@ -6,7 +6,7 @@ from .forms import BusinessConceptForm, MarketAnalysisForm, MVPConfigurationForm
 from .project_generator import generate_project
 from .deployer import deploy_project
 from .models import Project, BusinessConcept, MarketAnalysis, MVPConfiguration, ProjectConfiguration,FinalReview
-
+from core.crews.step1_crew.step1_crew import CrewAIService, CrewAIServiceRefine
 import logging
 
 logger = logging.getLogger(__name__)
@@ -223,6 +223,7 @@ class ProjectStepView(FormView):
             if self.step == 1: 
                 messages.warning(self.request, f"Processing data of step {self.step}.")
                 print("processing step 1")
+                print(step_data)
             elif self.step == 2:
                 messages.warning(self.request, f"Processing data of step {self.step}.")
                 print("processing step 2")
@@ -249,6 +250,7 @@ class ProjectStepView(FormView):
             if self.step == 1: 
                 messages.warning(self.request, f"Re-Processing data of step {self.step}.")
                 print("reprocessing step 1")
+                self.reprocess_business_concept(step_data)
             elif self.step == 2:
                 messages.warning(self.request, f"Re-Processing data of step {self.step}.")
                 print("reprocessing step 2")
@@ -326,6 +328,36 @@ class ProjectStepView(FormView):
             'step_data': current_step_data
         })
         return context
+    def reprocess_business_concept(self, concept):
+        """Example: Generate initial technical requirements based on business concept"""
+        reformulated_idea = f"""
+        Project Idea: {concept.reformulated_idea}
+        """
+        crew_ai_service = CrewAIServiceRefine()
+        result=crew_ai_service.process_business_idea(concept.reformulated_idea, concept.user_demand)
+        structured_idea = result.reformulated_idea
+        project_name=result.project_name
+
+        # Update the project
+        self.project.project_name = project_name
+        self.project.business_idea = structured_idea
+        self.project.save()
+
+        # Update or create the BusinessConcept
+        business_concept, created = BusinessConcept.objects.get_or_create(
+            project=self.project,
+            defaults={
+                'reformulated_idea': structured_idea,
+                'project_name': project_name,
+            }
+        )
+        if not created:
+            business_concept.reformulated_idea = structured_idea
+            business_concept.project_name = project_name
+            business_concept.save()
+
+
 
 def complete_view(request):
     return render(request, 'core/complete.html') 
+

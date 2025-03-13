@@ -16,16 +16,22 @@ class BusinessConceptForm(forms.ModelForm):
     class Meta:
         model = BusinessConcept
         # Removed project_name since it's now in Project model
-        fields = ['user_demand', 'reformulated_idea']
+        fields = ['project_name', 'reformulated_idea', 'user_demand']
         
         widgets = {
-            'user_demand': forms.Textarea(attrs={
-                'rows': 4,
-                'placeholder': 'Describe your target audience and their needs...'
+            'project_name': forms.Textarea(attrs={
+                'rows': 1,
+                'placeholder': 'Enter your project name...',
+                'readonly': True   # Additional protection
             }),
             'reformulated_idea': forms.Textarea(attrs={
                 'rows': 4,
-                'placeholder': 'Enter the refined version of your business idea...'
+                'placeholder': 'Enter the refined version of your business idea...',
+                'readonly': True   # Additional protection
+            }),
+                        'user_demand': forms.Textarea(attrs={
+                'rows': 4,
+                'placeholder': 'Enter your instructions to refine the business idea or to change the project name...'
             })
         }
 

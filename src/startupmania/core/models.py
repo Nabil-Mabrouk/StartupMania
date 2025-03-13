@@ -99,7 +99,8 @@ class ProjectStepBase(TimestampedModel):
 class BusinessConcept(ProjectStepBase):
     """Step 1: Define business concept"""
     # Removed duplicate project_name field
-    user_demand = models.TextField()
+    user_demand = models.TextField(default="")
+    project_name=models.TextField(max_length=200, default="Unnamed Project")
     reformulated_idea = models.TextField()
 
     class Meta:

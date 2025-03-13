@@ -11,6 +11,7 @@ class EmailCapture(models.Model):
 
 class LandingPageIdea(models.Model):
     """Model for storing initial business ideas submitted on the landing page."""
+    #project_name=models.TextField(max_length=200, default="Unnamed Project")
     idea_text = models.TextField(help_text="Enter your business idea")
     processed = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)

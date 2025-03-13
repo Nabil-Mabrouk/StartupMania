@@ -5,11 +5,83 @@ business_idea_structuring_task:
     - Propose a structured solution, ensuring feasibility as a Django web application.
     - Outline core functionalities and user value.
     - Provide a project name that encapsulates the essence of the idea.
-    
     User-provided idea: {user_problem}
   expected_output: >
     A structured business idea including:
     - A well-defined problem statement.
     - A feasible solution structured for Django implementation.
     - A list of key features and functionalities of the web application.
-    - A compelling project name that reflects the concept.
+    - provide a compelling project name that reflects the concept.
+business_idea_refinement_task:
+  description: >
+    Revise and refine the structured business concept based on user modifications while maintaining Django feasibility.
+    - Analyze original structured idea: {structured_idea}
+    - Incorporate user modifications: {user_modifications}
+    - Ensure alignment between project name and business concept
+    - Maintain Django implementation feasibility
+    - Optimize feature prioritization based on adjustments
+  expected_output: >
+    A refined business concept document including:
+    - Updated problem statement reflecting modifications
+    - Adjusted solution architecture maintaining Django compatibility
+    - Revised feature list with implementation priorities
+    - Finalized project name with brand alignment
+    - Version history of changes from original proposal
+market_size_calculation:
+  agent: market_sizer
+  description: >
+    Calculate market size estimate using multiple methodologies based on:
+    - Project Name: {project_name}
+    - Business Concept: {structured_idea}
+  expected_output: >
+    Market size report containing:
+    - TAM/SAM/SOM breakdown
+    - Top-down and bottom-up estimates
+    - Final reconciled market size (M€)
+competitor_analysis_task:
+  agent: competitor_analyst
+  description: >
+    Analyze competitive landscape considering:
+    - Market size data from previous step
+    - Business concept: {structured_idea}
+  expected_output: >
+    Competitor analysis report with:
+    - 3-5 direct competitors
+    - 2-3 indirect competitors
+    - SWOT analysis
+    - Competitive differentiation strategy
+mvp_definition_task:
+  agent: mvp_architect
+  description: >
+    Define MVP features based on:
+    - Market size analysis
+    - Competitor analysis
+    - Django technical constraints
+  expected_output: >
+    Prioritized MVP feature list containing:
+    - 5-7 core features
+    - Technical implementation notes
+    - User value propositions
+ratings_calculation_task:
+  agent: ratings_specialist
+  description: >
+    Calculate innovation and complexity scores using:
+    - Full market analysis data
+    - Technical requirements
+    - Competitive landscape
+  expected_output: >
+    Ratings report with:
+    - Innovation score (0-100) with breakdown
+    - Complexity score (0-100) with factors
+    - Risk assessment matrix
+validation_task:
+  agent: validation_agent
+  description: >
+    Validate and format all outputs for database insertion
+  expected_output: >
+    Final structured data matching MarketAnalysis model fields:
+    - Validated market_size (float)
+    - Formatted competitors_analysis (text)
+    - MVP features list (text)
+    - Calculated ratings (integers 0-100)
+      

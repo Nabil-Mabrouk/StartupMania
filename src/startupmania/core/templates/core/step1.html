@@ -1,6 +1,15 @@
 {% extends "landing/base.html" %}
 {% load static %}
 {% load form_helpers %}
+{%block style%}
+<style>
+    .auto-resize {
+        resize: none;
+        overflow-y: hidden;
+        min-height: 3rem;  /* Adjust based on your line-height */
+    }
+</style>
+{%endblock%}
 
 {% block content %}
 <section class="text-white min-h-screen flex items-center">
@@ -14,20 +23,22 @@
     </div>
 
     <!-- Form Container -->
-    <div class="max-w-2xl mx-auto bg-gradient-to-br from-gray-800 to-blue-900/20 rounded-xl shadow-2xl p-6 md:p-8 border border-blue-800/30 hover:border-blue-700/50 transition-all">
+    <div class="max-w-5xl mx-auto bg-gradient-to-br from-gray-800 to-blue-900/20 rounded-xl shadow-2xl p-6 md:p-8 border border-blue-800/30 hover:border-blue-700/50 transition-all">
 
 
       <form method="post" class="space-y-8">
         {% csrf_token %}
         
         <!-- Form Fields -->
+        <!-- Two Column Layout -->
+        <!-- Form Fields -->
         <div class="space-y-6">
             {% for field in form %}
             <div>
-                <label for="{{ field.id_for_label }}" class="block text-lg font-medium mb-3 text-blue-200">
+                <label for="{{ field.id_for_label }}" class="block text-xl font-medium mb-3 text-blue-200">
                     {{ field.label }}
                 </label>
-                {{ field|add_class:"w-full px-4 py-3 rounded-lg bg-blue-900/20 border border-blue-800/30 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/30 text-gray-100 placeholder-blue-400/50 transition" }}
+                {{ field|add_class:"auto-resize w-full px-4 py-3 rounded-lg bg-blue-900/20 text-xl border border-blue-800/30 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/30 text-gray-100 placeholder-blue-400/50 transition" }}
             </div>
             {% endfor %}
         </div>
@@ -62,6 +73,49 @@
         </div>
     </form>
     </div>
+
+
+
   </div>
 </section>
 {% endblock %}
+
+{%block script%}
+<!-- Add this JavaScript at the end of your template -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        function autoResize(textarea) {
+            textarea.style.height = 'auto';
+            textarea.style.height = textarea.scrollHeight + 'px';
+        }
+    
+        // Initialize all textareas
+        const textareas = document.querySelectorAll('textarea.auto-resize');
+        textareas.forEach(textarea => {
+            autoResize(textarea);
+            
+            // Add input listener only for editable fields
+            if (!textarea.readOnly) {
+                textarea.addEventListener('input', () => autoResize(textarea));
+            }
+        });
+    
+        // Add resize observer for read-only fields in case content changes dynamically
+        const observer = new MutationObserver(mutations => {
+            mutations.forEach(mutation => {
+                if (mutation.target.tagName === 'TEXTAREA') {
+                    autoResize(mutation.target);
+                }
+            });
+        });
+    
+        document.querySelectorAll('textarea[readonly]').forEach(textarea => {
+            observer.observe(textarea, {
+                characterData: true,
+                childList: true,
+                subtree: true
+            });
+        });
+    });
+    </script>
+{%endblock%}

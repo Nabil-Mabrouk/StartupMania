@@ -19,7 +19,8 @@ class LandingFormView(FormView):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.crew_ai_service = CrewAIService()  # Initialize CrewAI service
+        # Initialize CrewAI service
+        self.crew_ai_service = CrewAIService()
 
     def form_valid(self, form):
         """Handles form submission and project creation."""
@@ -44,20 +45,24 @@ class LandingFormView(FormView):
 
     def process_idea(self, idea):
         """Creates Project and BusinessConcept from the idea."""
+        # Parse the result into a Pydantic model
+        result=self.crew_ai_service.process_business_idea(idea.idea_text)
+        structured_idea = result.reformulated_idea
+        project_name=result.project_name
+
         project = Project.objects.create(
             user=self.request.user if self.request.user.is_authenticated else None,
+            project_name=project_name,
             session_key=self.request.session.session_key,
-            business_idea=idea.idea_text
+            business_idea=idea.idea_text,
         )
 
         # TODO: Replace placeholders with actual generated content
 
-        # Parse the result into a Pydantic model
-        structured_idea = self.crew_ai_service.process_business_idea(idea.idea_text)['reformulated_idea ']
-
         BusinessConcept.objects.create(
             project=project,
-            user_demand=idea.idea_text,
+            user_demand="",
+            project_name=project_name,
             reformulated_idea=structured_idea
         )
 
